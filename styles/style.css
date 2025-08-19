@@ -58,6 +58,15 @@ header {
   cursor: pointer;
 }
 
+/* סגנון לכפתור תפריט במובייל */
+.menu {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+}
+
 /* כפתור חזרה למעלה */
 #scrollToTop {
   position: fixed; /* קבוע במסך */
