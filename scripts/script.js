@@ -1,83 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8"> <!-- הגדרת קידוד תווים -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- רספונסיביות -->
-  <title>Portfolio - Your Name</title> <!-- כותרת הדף -->
-  <link rel="stylesheet" href="styles/style.css"> <!-- קישור ל-CSS -->
-</head>
-<body>
-  <!-- אזור תפריט עליון (Header/Navbar) -->
-  <header id="header">
-    <nav class="navbar">
-      <div class="logo">Portfolio</div> <!-- לוגו/שם האתר -->
-      <ul class="nav-links">  <!-- קישורי ניווט -->
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <button id="menu-toggle" class="menu">&#9776;</button> <!-- כפתור תפריט למובייל -->
-    </nav>
-  </header>
-  <button id="scrollToTop" title="Back to top">&#8679;</button> <!-- כפתור חזרה למעלה -->
+// ניווט עליון + כפתור חזרה למעלה + ScrollSpy
+window.addEventListener('scroll', () => {
+  const header = document.getElementById('header');
+  header.style.background = window.scrollY > 40 ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.57)';
+  document.getElementById('scrollToTop').style.display = window.scrollY > 300 ? 'block' : 'none';
+  let current = '';
+  document.querySelectorAll('section').forEach(sec => {
+    if (window.scrollY >= sec.offsetTop - 80) current = sec.id;
+  });
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+  });
+});
 
-  <!-- אזור אודות (About Section) -->
-  <section id="about" class="section about-section">
-    <div class="about-container">
-      <!-- תמונת אווטאר -->
-      <img src="luke-cage-new-trailer-header.webp" alt="Avatar" class="avatar">
-      <div class="about-text">
-        <h1>yoni z</h1> <!-- שם מלא -->
-        <h2>Web Developer & Designer</h2> <!-- תיאור קצר -->
-        <p>
-          Passionate about <span class="highlight">JavaScript</span>, <span class="highlight">React</span>, <span class="highlight">C#</span> and building modern web experiences.<br>
-          <span class="skills"> <!-- מיומנויות -->
-            <span class="tag">JS</span>
-            <span class="tag">JAVA</span>
-            <span class="tag">C#</span>
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-          </span>
-        </p>
-      </div>
-    </div>
-  </section>
+// תפריט
+const navLinks = document.querySelector('.nav-links');
+document.getElementById('menu-toggle').onclick = () => navLinks.classList.toggle('open');
 
-  <!-- אזור פרויקטים (Projects Section) -->
-  <section id="projects" class="section projects-section">
-    <h2>My Projects</h2> <!-- כותרת גלריה -->
-    <div id="projects-grid" class="projects-grid">
-      <!-- כאן יופיעו כרטיסי הפרויקטים מה-JS -->
-      <div class="skeleton-card"></div>
-      <div class="skeleton-card"></div>
-      <div class="skeleton-card"></div>
-    </div>
-    <div id="projects-counter"></div> <!-- מונה פרויקטים -->
-  </section>
+// גלילה רכה
+Array.from(document.querySelectorAll('.nav-links a')).forEach(link => {
+  link.onclick = e => {
+    e.preventDefault();
+    document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+    navLinks.classList.remove('open');
+  };
+});
 
-  <!-- אזור יצירת קשר (Contact Section) -->
-  <section id="contact" class="section contact-section">
-    <h2>Contact</h2> <!-- כותרת יצירת קשר -->
-    <form id="contactForm"> <!-- טופס יצירת קשר -->
-      <input type="text" id="name" name="name" placeholder="Full Name" required>
-      <input type="email" id="email" name="email" placeholder="Email" required>
-      <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-      <button type="submit" class="gradient-btn">Send</button>
-    </form>
-    <div class="contact-buttons"> <!-- כפתורים לרשתות חברתיות -->
-      <a href="https://linkedin.com" target="_blank" class="contact-btn linkedin">LinkedIn</a>
-      <a href="https://github.com" target="_blank" class="contact-btn github">GitHub</a>
-    </div>
-    <div id="form-message"></div> <!-- הודעות שגיאה/הצלחה -->
-  </section>
+// כפתור חזרה למעלה
+const scrollBtn = document.getElementById('scrollToTop');
+scrollBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  <!-- אזור תחתית הדף (Footer) -->
-  <footer>
-    <div class="footer-content">
-      <span>&copy; 2025 Your Name. All rights reserved.</span> <!-- קרדיט -->
-    </div>
-  </footer>
+// --- פרויקטים מ-GitHub ---
+const username = 'yoniGH-h';
+const projectsGrid = document.getElementById('projects-grid');
+const counter = document.getElementById('projects-counter');
 
-  <script src="scripts/script.js"></script> <!-- קישור ל-JS -->
-</body>
-</html>
+function showSkeletons(n) {
+  projectsGrid.innerHTML = '';
+  for (let i = 0; i < n; i++)
+    projectsGrid.innerHTML += '<div class="skeleton-card"></div>';
+}
+
+function createProjectCard(repo) {
+  const card = document.createElement('div');
+  card.className = 'project-card';
+  card.onclick = () => window.open(repo.html_url, '_blank');
+  card.innerHTML = `
+    <div class="project-title">${repo.name}</div>
+    <div class="project-desc">${repo.description || 'No description.'}</div>
+    <div class="project-langs">שפות:</div>
+    <div class="badges"></div>
+    <div class="project-overlay"><button class="gradient-btn">View on GitHub</button></div>
+  `;
+  fetch(repo.languages_url)
+    .then(res => res.json())
+    .then(langs => {
+      Object.keys(langs).forEach(lang => {
+        card.querySelector('.badges').innerHTML += `<span class="badge">${lang}</span>`;
+      });
+    });
+  return card;
+}
+
+function fetchProjects() {
+  showSkeletons(3);
+  fetch(`https://api.github.com/users/${username}/repos`)
+    .then(res => res.ok ? res.json() : Promise.reject())
+    .then(repos => {
+      projectsGrid.innerHTML = '';
+      repos.forEach(repo => projectsGrid.appendChild(createProjectCard(repo)));
+      counter.textContent = `Total Projects: ${repos.length}`;
+    })
+    .catch(() => {
+      projectsGrid.innerHTML = '<div style="text-align:center;color:#d32f2f;">Failed to load projects.</div>';
+      counter.textContent = '';
+    });
+}
+window.addEventListener('load', fetchProjects);
+
+// ולידציה לטופס יצירת קשר
+const contactForm = document.getElementById('contactForm');
+const formMsg = document.getElementById('form-message');
+contactForm.onsubmit = e => {
+  e.preventDefault();
+  const f = e.target;
+  let error = '';
+  if (f.name.value.trim().length < 2) error = 'נא להזין שם מלא.';
+  else if (!/^\S+@\S+\.\S+$/.test(f.email.value.trim())) error = 'נא להזין אימייל תקין.';
+  else if (f.message.value.trim().length < 5) error = 'ההודעה קצרה מדי.';
+  formMsg.textContent = error || 'ההודעה נשלחה בהצלחה!';
+  formMsg.style.color = error ? '#d32f2f' : '#0078d7';
+  if (!error) f.reset();
+};
