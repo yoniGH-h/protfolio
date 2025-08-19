@@ -1,37 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"> <!-- הגדרת קידוד תווים -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- רספונסיביות -->
-  <title>Portfolio - Your Name</title> <!-- כותרת הדף -->
-  <link rel="stylesheet" href="styles/style.css"> <!-- קישור ל-CSS -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Your Name</title>
+  <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-  <!-- אזור תפריט עליון (Header/Navbar) -->
   <header id="header">
     <nav class="navbar">
-      <div class="logo">Portfolio</div> <!-- לוגו/שם האתר -->
-      <ul class="nav-links">  <!-- קישורי ניווט -->
+      <div class="logo">Portfolio</div>
+      <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <button id="menu-toggle" class="hamburger">&#9776;</button> <!-- כפתור המבורגר למובייל -->
+      <button id="menu-toggle" class="menu">&#9776;</button>
     </nav>
   </header>
-  <button id="scrollToTop" title="Back to top">&#8679;</button> <!-- כפתור חזרה למעלה -->
+  <button id="scrollToTop" title="Back to top">&#8679;</button>
 
-  <!-- אזור אודות (About Section) -->
   <section id="about" class="section about-section">
     <div class="about-container">
-      <!-- תמונת אווטאר -->
       <img src="luke-cage-new-trailer-header.webp" alt="Avatar" class="avatar">
       <div class="about-text">
-        <h1>yoni z</h1> <!-- שם מלא -->
-        <h2>Web Developer & Designer</h2> <!-- תיאור קצר -->
+        <h1>yoni z</h1>
+        <h2>Web Developer & Designer</h2>
         <p>
           Passionate about <span class="highlight">JavaScript</span>, <span class="highlight">React</span>, <span class="highlight">C#</span> and building modern web experiences.<br>
-          <span class="skills"> <!-- מיומנויות -->
+          <span class="skills">
             <span class="tag">JS</span>
             <span class="tag">JAVA</span>
             <span class="tag">C#</span>
@@ -43,41 +40,37 @@
     </div>
   </section>
 
-  <!-- אזור פרויקטים (Projects Section) -->
   <section id="projects" class="section projects-section">
-    <h2>My Projects</h2> <!-- כותרת גלריה -->
+    <h2>My Projects</h2>
     <div id="projects-grid" class="projects-grid">
-      <!-- כאן יופיעו כרטיסי הפרויקטים מה-JS -->
       <div class="skeleton-card"></div>
       <div class="skeleton-card"></div>
       <div class="skeleton-card"></div>
     </div>
-    <div id="projects-counter"></div> <!-- מונה פרויקטים -->
+    <div id="projects-counter"></div>
   </section>
 
-  <!-- אזור יצירת קשר (Contact Section) -->
   <section id="contact" class="section contact-section">
-    <h2>Contact</h2> <!-- כותרת יצירת קשר -->
-    <form id="contactForm"> <!-- טופס יצירת קשר -->
+    <h2>Contact</h2>
+    <form id="contactForm">
       <input type="text" id="name" name="name" placeholder="Full Name" required>
       <input type="email" id="email" name="email" placeholder="Email" required>
       <textarea id="message" name="message" placeholder="Your Message" required></textarea>
       <button type="submit" class="gradient-btn">Send</button>
     </form>
-    <div class="contact-buttons"> <!-- כפתורים לרשתות חברתיות -->
+    <div class="contact-buttons">
       <a href="https://linkedin.com" target="_blank" class="contact-btn linkedin">LinkedIn</a>
       <a href="https://github.com" target="_blank" class="contact-btn github">GitHub</a>
     </div>
-    <div id="form-message"></div> <!-- הודעות שגיאה/הצלחה -->
+    <div id="form-message"></div>
   </section>
 
-  <!-- אזור תחתית הדף (Footer) -->
   <footer>
     <div class="footer-content">
-      <span>&copy; 2025 Your Name. All rights reserved.</span> <!-- קרדיט -->
+      <span>&copy; 2025 Your Name. All rights reserved.</span>
     </div>
   </footer>
 
-  <script src="scripts/script.js"></script> <!-- קישור ל-JS -->
+  <script src="scripts/script.js"></script>
 </body>
 </html>
