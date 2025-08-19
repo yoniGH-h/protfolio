@@ -20,32 +20,32 @@ header {
 }
 
 /* עיצוב שורת הניווט */
-.navbar {
+.navigation {
   display: flex; /* פריסה אופקית */
   align-items: center; /* יישור אנכי */
   justify-content: space-between; /* ריווח בין לוגו לתפריט */
   padding: 1rem 2rem; /* ריווח פנימי */
 }
-.logo {
+.site-logo {
   font-size: 1.5rem; /* גודל לוגו */
   font-weight: bold; /* מודגש */
 }
 
 /* עיצוב קישורי ניווט */
-.nav-links {
+.navigation-links {
   list-style: none; /* ללא נקודות */
   display: flex; /* פריסה אופקית */
   gap: 2rem; /* ריווח בין קישורים */
   margin: 0;
 }
-.nav-links li a {
+.navigation-links li a {
   text-decoration: none; /* ללא קו תחתון */
   color: #222; /* צבע טקסט */
   font-weight: 500; /* טקסט מודגש */
   transition: color 0.2s; /* מעבר צבע חלק */
 }
-.nav-links li a.active,
-.nav-links li a:hover {
+.navigation-links li a.active,
+.navigation-links li a:hover {
   color: #0078d7; /* צבע כחול בהדגשה */
 }
 
@@ -59,7 +59,7 @@ header {
 }
 
 /* סגנון לכפתור תפריט במובייל */
-.menu {
+.menu-button {
   font-size: 2rem;
   background: none;
   border: none;
@@ -93,24 +93,24 @@ header {
 }
 
 /* עיצוב אזור אודות (About) */
-.about-container {
+.about {
   display: flex; /* פריסה אופקית */
   align-items: center; /* יישור אנכי */
   gap: 2rem; /* ריווח בין תמונה לטקסט */
   flex-wrap: wrap; /* מעבר לשורה חדשה במובייל */
 }
-.avatar {
+.profile-image {
   width: 160px; /* גודל תמונה */
   height: 160px;
   border-radius: 50%; /* עיגול */
   object-fit: cover; /* חיתוך תמונה */
   box-shadow: 0 4px 16px rgba(0,0,0,0.08); /* צל עדין */
 }
-.about-text h1 {
+.about-content h1 {
   margin: 0;
   font-size: 2.5rem; /* כותרת גדולה */
 }
-.about-text h2 {
+.about-content h2 {
   margin: 0.5rem 0 1rem 0;
   font-size: 1.2rem;
   color: #0078d7; /* כחול */
@@ -119,12 +119,12 @@ header {
   font-weight: bold;
   color: #0078d7; /* הדגשה בכחול */
 }
-.skills {
+.skills-list {
   display: flex;
   gap: 0.5rem;
   margin-top: 0.5rem;
 }
-.tag {
+.skill {
   background: linear-gradient(90deg,#0078d7,#00c6fb); /* גרדיאנט כחול */
   color: #fff;
   border-radius: 12px;
@@ -141,7 +141,7 @@ header {
 }
 
 /* גריד לפרויקטים */
-.projects-grid {
+.projects-list {
   display: grid; /* פריסה גריד */
   grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); /* רספונסיבי */
   gap: 2rem; /* ריווח בין כרטיסים */
@@ -220,7 +220,7 @@ header {
 }
 
 /* עיצוב סקשן יצירת קשר */
-.contact-section h2 {
+.contact h2 {
   text-align: center;
   margin-bottom: 2rem;
 }
@@ -244,7 +244,7 @@ header {
   border: 1.5px solid #0078d7;
   outline: none;
 }
-.gradient-btn {
+.send-button {
   background: linear-gradient(90deg,#0078d7,#00c6fb); /* גרדיאנט לכפתור */
   color: #fff;
   border: none;
@@ -255,17 +255,17 @@ header {
   cursor: pointer;
   transition: background 0.2s, transform 0.2s;
 }
-.gradient-btn:hover {
+.send-button:hover {
   background: linear-gradient(90deg,#00c6fb,#0078d7); /* הפוך גרדיאנט */
   transform: scale(1.04); /* הגדלה קלה */
 }
-.contact-buttons {
+.contact-links {
   display: flex;
   gap: 1rem;
   justify-content: center;
   margin-top: 1.5rem;
 }
-.contact-btn {
+.contact-link {
   background: #fff;
   border: 2px solid #0078d7;
   color: #0078d7;
@@ -275,7 +275,7 @@ header {
   text-decoration: none;
   transition: background 0.2s, color 0.2s;
 }
-.contact-btn:hover {
+.contact-link:hover {
   background: #0078d7;
   color: #fff;
 }
@@ -286,7 +286,7 @@ header {
 }
 
 /* עיצוב תחתית הדף (Footer) */
-footer {
+.footer {
   background: #222;
   color: #fff;
   padding: 1.5rem 0;
@@ -306,15 +306,15 @@ footer {
 
 /* רספונסיביות לטאבלט */
 @media (max-width: 800px) {
-  .about-container {
+  .about {
     flex-direction: column; /* מעבר לעמודה */
     align-items: flex-start;
   }
-  .navbar {
+  .navigation {
     flex-direction: row;
     padding: 1rem;
   }
-  .nav-links {
+  .navigation-links {
     gap: 1rem;
   }
 }
@@ -324,11 +324,11 @@ footer {
   .section {
     padding: 2rem 0.5rem;
   }
-  .navbar {
+  .navigation {
     flex-direction: row;
     padding: 0.5rem 1rem;
   }
-  .nav-links {
+  .navigation-links {
     display: none; /* מוסתר כברירת מחדל */
     flex-direction: column; /* מעבר לעמודה */
     position: absolute;
@@ -340,7 +340,7 @@ footer {
     padding: 1rem;
     z-index: 100;
   }
-  .nav-links.open {
+  .navigation-links.open {
     display: flex; /* מוצג בלחיצה */
   }
   .hamburger {
